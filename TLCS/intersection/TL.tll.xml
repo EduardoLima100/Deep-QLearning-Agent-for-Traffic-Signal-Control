@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2023-03-24 17:10:36 by Eclipse SUMO netedit Version 1.16.0 -->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <tlLogic id="TL" type="static" programID="0" offset="0">
+        <phase duration="30" state="GGGGrrrrrrrrrrrr"/>
+        <phase duration="3" state="yyyyrrrrrrrrrrrr"/>
+        <phase duration="2" state="rrrrrrrrrrrrrrrr"/>
+        <phase duration="30" state="rrrrGGGGrrrrrrrr"/>
+        <phase duration="3" state="rrrryyyyrrrrrrrr"/>
+        <phase duration="2" state="rrrrrrrrrrrrrrrr"/>
+        <phase duration="30" state="rrrrrrrrGGGGrrrr"/>
+        <phase duration="3" state="rrrrrrrryyyyrrrr"/>
+        <phase duration="2" state="rrrrrrrrrrrrrrrr"/>
+        <phase duration="30" state="rrrrrrrrrrrrGGGG"/>
+        <phase duration="3" state="rrrrrrrrrrrryyyy"/>
+        <phase duration="2" state="rrrrrrrrrrrrrrrr"/>
+    </tlLogic>
+</additional>

@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2023-06-06 17:42:09 by Eclipse SUMO netconvert Version 1.17.0
+<!-- generated on 2023-06-06 19:46:14 by Eclipse SUMO netedit Version 1.17.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <node-files value="enviroment_nodes.nod.xml"/>
-        <edge-files value="enviroment_edges.edg.xml"/>
+        <sumocfg-file value="C:\Users\Eduardo Lima\Documents\GitHub\Deep-QLearning-Agent-for-Traffic-Signal-Control\TLCS\intersection\sumo_config.sumocfg"/>
+        <sumo-net-file value="C:\Users\Eduardo Lima\Documents\GitHub\Deep-QLearning-Agent-for-Traffic-Signal-Control\TLCS\intersection\enviroment_net.net.xml"/>
     </input>
 
     <output>
-        <output-file value="enviroment_net.net.xml"/>
+        <tls-file value="C:\Users\Eduardo Lima\Documents\GitHub\Deep-QLearning-Agent-for-Traffic-Signal-Control\TLCS\intersection\TL.tll.xml"/>
+        <output-file value="C:\Users\Eduardo Lima\Documents\GitHub\Deep-QLearning-Agent-for-Traffic-Signal-Control\TLCS\intersection\enviroment_net.net.xml"/>
     </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="0"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.50"/>
+        <rectangular-lane-cut value="0"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="0"/>
+    </pedestrian>
 
 </configuration>
 -->
