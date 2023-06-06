@@ -7,6 +7,7 @@ class TrafficGenerator:
         self._max_steps = max_steps
 
     def generate_routefile(self, seed):
+        return None
         """
         Generation of the route of every car for one episode
         """
