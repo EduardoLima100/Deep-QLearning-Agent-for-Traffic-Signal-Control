@@ -17,6 +17,7 @@ def import_train_configuration(config_file):
     config['n_cars_generated'] = content['simulation'].getint('n_cars_generated')
     config['green_duration'] = content['simulation'].getint('green_duration')
     config['yellow_duration'] = content['simulation'].getint('yellow_duration')
+    config['red_duration'] = content['simulation'].getint('red_duration')
     config['num_layers'] = content['model'].getint('num_layers')
     config['width_layers'] = content['model'].getint('width_layers')
     config['batch_size'] = content['model'].getint('batch_size')
@@ -29,6 +30,8 @@ def import_train_configuration(config_file):
     config['gamma'] = content['agent'].getfloat('gamma')
     config['models_path_name'] = content['dir']['models_path_name']
     config['sumocfg_file_name'] = content['dir']['sumocfg_file_name']
+    config['load_existing_model'] = content['model'].getboolean('load_existing_model')
+    config['pretrained_model_number'] = content['model'].getint('pretrained_model_number')
     return config
 
 
@@ -45,6 +48,7 @@ def import_test_configuration(config_file):
     config['episode_seed'] = content['simulation'].getint('episode_seed')
     config['green_duration'] = content['simulation'].getint('green_duration')
     config['yellow_duration'] = content['simulation'].getint('yellow_duration')
+    config['red_duration'] = content['simulation'].getint('red_duration')
     config['num_states'] = content['agent'].getint('num_states')
     config['num_actions'] = content['agent'].getint('num_actions')
     config['sumocfg_file_name'] = content['dir']['sumocfg_file_name']
@@ -71,27 +75,33 @@ def set_sumo(gui, sumocfg_file_name, max_steps):
         sumoBinary = checkBinary('sumo-gui')
  
     # setting the cmd command to run sumo at simulation time
-    sumo_cmd = [sumoBinary, "-c", os.path.join('intersection', sumocfg_file_name), "--no-step-log", "true", "--waiting-time-memory", str(max_steps)]
+    sumo_cmd = [sumoBinary, "-c", os.path.join('intersection', sumocfg_file_name), "--no-step-log", "true", "--waiting-time-memory", str(max_steps), "--random"]
 
     return sumo_cmd
 
 
-def set_train_path(models_path_name):
+def set_train_path(models_path_name, load_existing_model, pretrained_model_number):
     """
     Create a new model path with an incremental integer, also considering previously created model paths
     """
     models_path = os.path.join(os.getcwd(), models_path_name, '')
     os.makedirs(os.path.dirname(models_path), exist_ok=True)
 
-    dir_content = os.listdir(models_path)
-    if dir_content:
-        previous_versions = [int(name.split("_")[1]) for name in dir_content]
-        new_version = str(max(previous_versions) + 1)
+    if load_existing_model:
+        data_path = os.path.join(models_path, 'model_'+str(pretrained_model_number), '')
+        if not os.path.exists(data_path):
+            sys.exit(f"No existing model found in path: {data_path}")
     else:
-        new_version = '1'
+        dir_content = os.listdir(models_path)
+        if dir_content:
+            previous_versions = [int(name.split("_")[1]) for name in dir_content]
+            new_version = str(max(previous_versions) + 1)
+        else:
+            new_version = '1'
 
-    data_path = os.path.join(models_path, 'model_'+new_version, '')
-    os.makedirs(os.path.dirname(data_path), exist_ok=True)
+        data_path = os.path.join(models_path, 'model_'+new_version, '')
+        os.makedirs(os.path.dirname(data_path), exist_ok=True)
+    
     return data_path 
 
 
