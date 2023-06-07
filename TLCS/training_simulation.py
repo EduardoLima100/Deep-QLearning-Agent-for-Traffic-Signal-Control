@@ -54,7 +54,7 @@ class Simulation:
         self._time_in_phase = [1, 0, 0, 0]
 
 
-    def run(self, episode, epsilon):
+    def run(self, epsilon):
         """
         Runs an episode of simulation, then starts a training session
         """
@@ -209,7 +209,7 @@ class Simulation:
         """
         Retrieve the number of cars with speed = 0 in every incoming lane
         """
-        incoming_lanes = ["north_in, south_in", "east_in", "west_in"]
+        incoming_lanes = ["north_in", "south_in", "east_in", "west_in"]
         queue_length = sum([traci.edge.getLastStepHaltingNumber(lane) for lane in incoming_lanes])
         return queue_length
 
