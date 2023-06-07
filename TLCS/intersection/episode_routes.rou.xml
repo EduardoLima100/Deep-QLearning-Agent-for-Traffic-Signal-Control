@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2023-04-26 17:14:05 by Eclipse SUMO netedit Version 1.16.0 -->
+<!-- generated on 2023-06-06 21:34:21 by Eclipse SUMO netedit Version 1.17.0
+-->
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
     <!-- VTypes -->
-    <vType id="car" length="5.00" minGap="2.50" maxSpeed="25" guiShape="passenger" accel="1.0" decel="4.5" sigma="0.5"/>
-    
+    <vType id="car" length="5.00" minGap="2.50" maxSpeed="25.00" guiShape="passenger" accel="1.0" decel="4.5" sigma="0.5"/>
     <!-- Routes -->
-    <route id="north_route" edges="NtoC CtoS"/>
-    <route id="south_route" edges="StoC CtoN"/>
-    <route id="east_route" edges="EtoC CtoW"/>
-    <route id="west_route" edges="WtoC CtoE"/>
-    
+    <route id="east_route" edges="east_in west_out"/>
+    <route id="north_route" edges="north_in south_out"/>
+    <route id="south_route" edges="south_in north_out"/>
+    <route id="west_route" edges="west_in east_out"/>
     <!-- Vehicles, persons and containers (sorted by depart) -->
+    <flow id="east" type="car" begin="0.00" route="east_route" end="3600.00" probability="0.05"/>
     <flow id="north" type="car" begin="0.00" route="north_route" end="3600.00" probability="0.05"/>
     <flow id="south" type="car" begin="0.00" route="south_route" end="3600.00" probability="0.05"/>
-    <flow id="east" type="car" begin="0.00" route="east_route" end="3600.00" probability="0.05"/>
     <flow id="west" type="car" begin="0.00" route="west_route" end="3600.00" probability="0.05"/>
 </routes>
