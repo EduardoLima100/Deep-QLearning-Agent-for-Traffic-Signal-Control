@@ -21,30 +21,30 @@ class Simulation:
 
         self._tl_memory_str = "NSEW"
         self._memory_code = {
-                                'NESW': [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-                                'NEWS': [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
-                                'NSEW': [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-                                'NSWE': [1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
-                                'NWES': [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-                                'NWSE': [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
-                                'ENSW': [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-                                'ENWS': [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
-                                'ESNW': [0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-                                'ESWN': [0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
-                                'EWNS': [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-                                'EWSN': [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
-                                'SNEW': [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1],
-                                'SNWE': [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0],
-                                'SENW': [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
-                                'SEWN': [0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-                                'SWNE': [0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0],
-                                'SWEN': [0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                                'WNES': [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-                                'WNSE': [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0],
-                                'WENS': [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-                                'WESN': [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-                                'WSNE': [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0],
-                                'WSEN': [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0]
+                                'NESW': [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+                                'NEWS': [1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
+                                'NSEW': [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                                'NSWE': [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
+                                'NWES': [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
+                                'NWSE': [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+                                'ENSW': [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1],
+                                'ENWS': [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0],
+                                'ESNW': [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
+                                'ESWN': [0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+                                'EWNS': [0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0],
+                                'EWSN': [0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+                                'SNEW': [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                                'SNWE': [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
+                                'SENW': [0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+                                'SEWN': [0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+                                'SWNE': [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+                                'SWEN': [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
+                                'WNES': [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0],
+                                'WNSE': [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+                                'WENS': [0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0],
+                                'WESN': [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+                                'WSNE': [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+                                'WSEN': [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0]
                             }
         self._time_in_phase = [1, 0, 0, 0]
 
@@ -79,20 +79,24 @@ class Simulation:
 
             # choose the light phase to activate, based on the current state of the intersection
             action = self._choose_action(current_state)
+            print("Action:", directions[action])
 
             # if the chosen phase is different from the last phase, activate the yellow phase
-            if self._step != 0 and old_action != action:
+            if old_action != action:
                 self._set_yellow_phase()
                 self._simulate(self._yellow_duration)
                 self._set_red_phase()
                 self._simulate(self._red_duration)
 
                 self._tl_memory_str = self._tl_memory_str.replace(directions[action], "") + directions[action]
+                print("Memory String:", self._tl_memory_str)
                 self._time_in_phase = [1, 0, 0, 0]
-            elif self._time_in_phase[-1] == 1:
+            elif self._time_in_phase[-1] != 1:
                 i = self._time_in_phase.index(1)
+                print("i =", i)
                 self._time_in_phase[i] = 0
-                self._time_in_phase[i+1] = 1            
+                self._time_in_phase[i+1] = 1
+
 
             # execute the phase selected before
             self._set_green_phase(action)
@@ -212,6 +216,18 @@ class Simulation:
                 state[car_position] = 1  # Write the position of the car car_id in the array in the form of "cell occupied"
         
         state = np.concatenate((state, self._memory_code[self._tl_memory_str], self._time_in_phase)) # Add the traffic light phase to the state array
+
+        print("North:", state[:10])
+        print("South:", state[10:20])
+        print("East:", state[20:30])
+        print("West:", state[30:40])
+
+        print("N:", state[40:44])
+        print("S:", state[44:48])
+        print("E:", state[48:52])
+        print("W:", state[52:56])
+
+        print("Time in phase:", state[56:60])
 
         return state
 
