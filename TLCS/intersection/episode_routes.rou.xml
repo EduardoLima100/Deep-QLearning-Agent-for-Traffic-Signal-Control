@@ -14,10 +14,10 @@
     <route id="west_route" edges="west_in east_out"/>
     
     <!-- Vehicles, persons and containers (sorted by depart) -->
-    <flow id="north" type="car" begin="0.00" route="north_route" end="600.00" probability="0.05"/>
-    <flow id="south" type="car" begin="0.00" route="south_route" end="600.00" probability="0.05"/>
-    <flow id="east" type="car" begin="0.00" route="east_route" end="600.00" probability="0.05"/>
-    <flow id="west" type="car" begin="0.00" route="west_route" end="600.00" probability="0.05"/>
+    <flow id="north" type="car" begin="0.00" route="north_route" end="600.00" probability="0.02"/>
+    <flow id="south" type="car" begin="0.00" route="south_route" end="600.00" probability="0.02"/>
+    <flow id="east" type="car" begin="0.00" route="east_route" end="600.00" probability="0.02"/>
+    <flow id="west" type="car" begin="0.00" route="west_route" end="600.00" probability="0.02"/>
 
     <flow id="north1" type="car" begin="600.00" route="north_route" end="1200.00" probability="0.02"/>
     <flow id="south1" type="car" begin="600.00" route="south_route" end="1200.00" probability="0.02"/>
