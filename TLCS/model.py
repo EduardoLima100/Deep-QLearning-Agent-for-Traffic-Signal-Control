@@ -28,7 +28,7 @@ class TrainModel:
         """
         Build and compile a fully connected deep neural network
         """
-        dropout_rate = 0.2  # Defina a taxa de dropout aqui. Normalmente, valores como 0.5 são um bom ponto de partida.
+        dropout_rate = 0.0  # Defina a taxa de dropout aqui.
 
         model = nn.Sequential(
             nn.Linear(self._input_dim, width),

@@ -79,7 +79,7 @@ class Simulation:
 
             # choose the light phase to activate, based on the current state of the intersection
             action = self._choose_action(current_state)
-            print("Action:", directions[action])
+            #print("Action:", directions[action])
 
             # if the chosen phase is different from the last phase, activate the yellow phase
             if old_action != action:
@@ -89,11 +89,11 @@ class Simulation:
                 self._simulate(self._red_duration)
 
                 self._tl_memory_str = self._tl_memory_str.replace(directions[action], "") + directions[action]
-                print("Memory String:", self._tl_memory_str)
+                #print("Memory String:", self._tl_memory_str)
                 self._time_in_phase = [1, 0, 0, 0]
             elif self._time_in_phase[-1] != 1:
                 i = self._time_in_phase.index(1)
-                print("i =", i)
+                #print("i =", i)
                 self._time_in_phase[i] = 0
                 self._time_in_phase[i+1] = 1
 
@@ -217,17 +217,17 @@ class Simulation:
         
         state = np.concatenate((state, self._memory_code[self._tl_memory_str], self._time_in_phase)) # Add the traffic light phase to the state array
 
-        print("North:", state[:10])
-        print("South:", state[10:20])
-        print("East:", state[20:30])
-        print("West:", state[30:40])
+        #print("North:", state[:10])
+        #print("South:", state[10:20])
+        #print("East:", state[20:30])
+        #print("West:", state[30:40])
 
-        print("N:", state[40:44])
-        print("S:", state[44:48])
-        print("E:", state[48:52])
-        print("W:", state[52:56])
+        #print("N:", state[40:44])
+        #print("S:", state[44:48])
+        #print("E:", state[48:52])
+        #print("W:", state[52:56])
 
-        print("Time in phase:", state[56:60])
+        #print("Time in phase:", state[56:60])
 
         return state
 

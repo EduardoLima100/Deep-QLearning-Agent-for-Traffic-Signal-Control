@@ -23,35 +23,35 @@ class TrafficGenerator:
     <route id="west_route" edges="west_in east_out"/>
     
     <!-- Vehicles sorted by depart -->
-    <flow id="north0" type="car" begin="0.00" route="north_route" end="300.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="south0" type="car" begin="0.00" route="south_route" end="300.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="east0" type="car" begin="0.00" route="east_route" end="300.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="west0" type="car" begin="0.00" route="west_route" end="300.00" probability="{random.randint(2,10)/100}"/>
+    <flow id="north0" type="car" begin="0.00" route="north_route" end="300.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="south0" type="car" begin="0.00" route="south_route" end="300.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="east0" type="car" begin="0.00" route="east_route" end="300.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="west0" type="car" begin="0.00" route="west_route" end="300.00" probability="{random.randint(1,2)/100}"/>
 
-    <flow id="north1" type="car" begin="300.00" route="north_route" end="600.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="south1" type="car" begin="300.00" route="south_route" end="600.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="east1" type="car" begin="300.00" route="east_route" end="600.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="west1" type="car" begin="300.00" route="west_route" end="600.00" probability="{random.randint(2,10)/100}"/>
+    <flow id="north1" type="car" begin="300.00" route="north_route" end="600.00" probability="{random.randint(1,3)/100}"/>
+    <flow id="south1" type="car" begin="300.00" route="south_route" end="600.00" probability="{random.randint(1,3)/100}"/>
+    <flow id="east1" type="car" begin="300.00" route="east_route" end="600.00" probability="{random.randint(1,3)/100}"/>
+    <flow id="west1" type="car" begin="300.00" route="west_route" end="600.00" probability="{random.randint(1,3)/100}"/>
 
-    <flow id="north2" type="car" begin="600.00" route="north_route" end="900.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="south2" type="car" begin="600.00" route="south_route" end="900.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="east2" type="car" begin="600.00" route="east_route" end="900.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="west2" type="car" begin="600.00" route="west_route" end="900.00" probability="{random.randint(2,10)/100}"/>
+    <flow id="north2" type="car" begin="600.00" route="north_route" end="900.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="south2" type="car" begin="600.00" route="south_route" end="900.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="east2" type="car" begin="600.00" route="east_route" end="900.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="west2" type="car" begin="600.00" route="west_route" end="900.00" probability="{random.randint(1,2)/100}"/>
 
-    <flow id="north3" type="car" begin="900.00" route="north_route" end="1200.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="south3" type="car" begin="900.00" route="south_route" end="1200.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="east3" type="car" begin="900.00" route="east_route" end="1200.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="west3" type="car" begin="900.00" route="west_route" end="1200.00" probability="{random.randint(2,10)/100}"/>
+    <flow id="north3" type="car" begin="900.00" route="north_route" end="1200.00" probability="{random.randint(1,3)/100}"/>
+    <flow id="south3" type="car" begin="900.00" route="south_route" end="1200.00" probability="{random.randint(1,3)/100}"/>
+    <flow id="east3" type="car" begin="900.00" route="east_route" end="1200.00" probability="{random.randint(1,3)/100}"/>
+    <flow id="west3" type="car" begin="900.00" route="west_route" end="1200.00" probability="{random.randint(1,3)/100}"/>
 
-    <flow id="north4" type="car" begin="1200.00" route="north_route" end="1500.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="south4" type="car" begin="1200.00" route="south_route" end="1500.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="east4" type="car" begin="1200.00" route="east_route" end="1500.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="west4" type="car" begin="1200.00" route="west_route" end="1500.00" probability="{random.randint(2,10)/100}"/>
+    <flow id="north4" type="car" begin="1200.00" route="north_route" end="1500.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="south4" type="car" begin="1200.00" route="south_route" end="1500.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="east4" type="car" begin="1200.00" route="east_route" end="1500.00" probability="{random.randint(1,2)/100}"/>
+    <flow id="west4" type="car" begin="1200.00" route="west_route" end="1500.00" probability="{random.randint(1,2)/100}"/>
 
-    <flow id="north5" type="car" begin="1500.00" route="north_route" end="1800.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="south5" type="car" begin="1500.00" route="south_route" end="1800.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="east5" type="car" begin="1500.00" route="east_route" end="1800.00" probability="{random.randint(2,10)/100}"/>
-    <flow id="west5" type="car" begin="1500.00" route="west_route" end="1800.00" probability="{random.randint(2,10)/100}"/>
+    <flow id="north5" type="car" begin="1500.00" route="north_route" end="1800.00" probability="{random.randint(1,4)/100}"/>
+    <flow id="south5" type="car" begin="1500.00" route="south_route" end="1800.00" probability="{random.randint(1,4)/100}"/>
+    <flow id="east5" type="car" begin="1500.00" route="east_route" end="1800.00" probability="{random.randint(1,4)/100}"/>
+    <flow id="west5" type="car" begin="1500.00" route="west_route" end="1800.00" probability="{random.randint(1,4)/100}"/>
 </routes>""", file=routes)
 
 if __name__ == "__main__":
