@@ -19,6 +19,7 @@ class Simulation:
         self._reward_episode = []
         self._queue_length_episode = []
 
+        self._teleporting_cars = 0
         self._tl_memory_str = "NSEW"
         self._memory_code = {
                                 'NESW': [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
@@ -75,7 +76,15 @@ class Simulation:
             # calculate reward of previous action: (change in cumulative waiting time between actions)
             # waiting time = seconds waited by a car since the spawn in the environment, cumulated for every car in incoming lanes
             current_total_wait = self._collect_waiting_times()
-            reward = old_total_wait - current_total_wait
+            delta_waiting_time = (old_total_wait - current_total_wait) / 10
+            reward = (  delta_waiting_time + (10 if current_total_wait == 0 and not self._teleporting_cars else 0))
+
+            if self._teleporting_cars > 0:
+                print("Teleporting cars:", self._teleporting_cars)
+                print(reward)
+                reward = -2 * reward * self._teleporting_cars if reward > 0 else reward * 2 * self._teleporting_cars
+
+                self._teleporting_cars = 0
 
             # choose the light phase to activate, based on the current state of the intersection
             action = self._choose_action(current_state)
@@ -124,6 +133,9 @@ class Simulation:
 
         while steps_todo > 0:
             traci.simulationStep()  # simulate 1 step in sumo
+
+            self._teleporting_cars += traci.simulation.getStartingTeleportNumber()
+
             self._step += 1 # update the step counter
             steps_todo -= 1
             queue_length = self._get_queue_length() 

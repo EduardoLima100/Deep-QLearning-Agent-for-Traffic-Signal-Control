@@ -24,6 +24,7 @@ class Simulation:
         self._avg_queue_length_store = []
         self._training_epochs = training_epochs
 
+        self._teleporting_cars = 0
         self._tl_memory_str = "NSEW"
         self._memory_code = {
                                 'NESW': [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
@@ -73,6 +74,7 @@ class Simulation:
         self._sum_waiting_time = 0
         self._max_waiting_time = 0
         old_total_wait = 0
+        #old_queue_length = 0
         old_state = -1
         old_action = -1
         directions = ["N", "S", "E", "W"]
@@ -81,11 +83,38 @@ class Simulation:
 
             # get current state of the intersection
             current_state = self._get_state()
+            
 
             # calculate reward of previous action: (change in cumulative waiting time between actions)
             # waiting time = seconds waited by a car since the spawn in the environment, cumulated for every car in incoming lanes
             current_total_wait = self._collect_waiting_times()
-            reward = old_total_wait - current_total_wait
+            #current_queue_length = self._get_queue_length()
+
+            # Pesos para as diferentes componentes da recompensa
+            weight_waiting_time = 1
+            #weight_queue_length = 0.2
+
+            # Normalização para garantir que todos os componentes contribuam igualmente
+            # max_waiting_time = self._max_steps  # Estimativa do máximo tempo de espera possível
+            #max_queue_length = 50    # Estimativa do comprimento máximo da fila possível
+            
+            # Cálculo das mudanças em cada métrica
+            delta_waiting_time = (old_total_wait - current_total_wait) / 10
+            #delta_queue_length = (old_queue_length - current_queue_length) / 10
+
+            #delta_waiting_time = 1 if delta_waiting_time > 1 else -1 if delta_waiting_time < -1 else delta_waiting_time
+            #delta_queue_length = 1 if delta_queue_length > 1 else -1 if delta_queue_length < -1 else delta_queue_length
+
+            reward = (  delta_waiting_time + (10 if current_total_wait == 0 and not self._teleporting_cars else 0))
+            
+            #print("Reward:", reward, "- Waiting time:", current_total_wait, "- Delta waiting time:", delta_waiting_time, "- Teleporting cars:", self._teleporting_cars, "- Max waiting time:", self._max_waiting_time)
+
+            if self._teleporting_cars > 0:
+                print("Teleporting cars:", self._teleporting_cars)
+                print(reward)
+                reward = -2 * reward * self._teleporting_cars if reward > 0 else reward * 2 * self._teleporting_cars
+
+                self._teleporting_cars = 0
 
             # saving the data into the memory
             if self._step != 0:
@@ -116,6 +145,7 @@ class Simulation:
             old_state = current_state
             old_action = action
             old_total_wait = current_total_wait
+            #old_queue_length = current_queue_length
 
             # saving only the meaningful reward to better see if the agent is behaving correctly
             if reward < 0:
@@ -145,6 +175,10 @@ class Simulation:
 
         while steps_todo > 0:
             traci.simulationStep()  # simulate 1 step in sumo
+
+            # check if a car has teleported (teleporting cars are those that were spawned in the simulation and were teleported to the end of the route)
+            self._teleporting_cars += traci.simulation.getStartingTeleportNumber()
+
             self._step += 1 # update the step counter
             steps_todo -= 1
             queue_length = self._get_queue_length()
