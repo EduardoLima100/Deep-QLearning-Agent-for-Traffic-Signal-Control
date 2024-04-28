@@ -25,6 +25,7 @@ class Simulation:
         self._training_epochs = training_epochs
 
         self._teleporting_cars = 0
+        self._current_max_waiting_time = 0
         self._tl_memory_str = "NSEW"
         self._memory_code = {
                                 'NESW': [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
@@ -88,10 +89,12 @@ class Simulation:
             # calculate reward of previous action: (change in cumulative waiting time between actions)
             # waiting time = seconds waited by a car since the spawn in the environment, cumulated for every car in incoming lanes
             current_total_wait = self._collect_waiting_times()
+            current_waiting_mean = current_total_wait / len(self._waiting_times) if len(self._waiting_times) > 0 else 0
+            current_max_waiting_time = max(self._waiting_times.values()) if len(self._waiting_times) > 0 else 0
             #current_queue_length = self._get_queue_length()
 
             # Pesos para as diferentes componentes da recompensa
-            weight_waiting_time = 1
+            #weight_waiting_time = 1
             #weight_queue_length = 0.2
 
             # Normalização para garantir que todos os componentes contribuam igualmente
@@ -105,16 +108,23 @@ class Simulation:
             #delta_waiting_time = 1 if delta_waiting_time > 1 else -1 if delta_waiting_time < -1 else delta_waiting_time
             #delta_queue_length = 1 if delta_queue_length > 1 else -1 if delta_queue_length < -1 else delta_queue_length
 
-            reward = (  delta_waiting_time + (10 if current_total_wait == 0 and not self._teleporting_cars else 0))
-            
+            reward = (  
+                delta_waiting_time +
+                (10 if current_total_wait == 0 and not self._teleporting_cars else 0) +
+                - current_waiting_mean / 10
+                - current_max_waiting_time / 10        
+            )
+
             #print("Reward:", reward, "- Waiting time:", current_total_wait, "- Delta waiting time:", delta_waiting_time, "- Teleporting cars:", self._teleporting_cars, "- Max waiting time:", self._max_waiting_time)
 
             if self._teleporting_cars > 0:
                 print("Teleporting cars:", self._teleporting_cars)
                 print(reward)
-                reward = -2 * reward * self._teleporting_cars if reward > 0 else reward * 2 * self._teleporting_cars
+                reward = reward * self._teleporting_cars if reward > 0 else reward * 2 * self._teleporting_cars
 
                 self._teleporting_cars = 0
+
+            reward = max(min(reward, 60), -60)
 
             # saving the data into the memory
             if self._step != 0:
