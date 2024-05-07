@@ -124,7 +124,7 @@ class Simulation:
 
                 self._teleporting_cars = 0
 
-            reward = max(min(reward, 60), -60)
+            #reward = max(min(reward, 60), -60)
 
             # saving the data into the memory
             if self._step != 0:

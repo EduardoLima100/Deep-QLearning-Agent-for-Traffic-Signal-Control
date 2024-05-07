@@ -91,11 +91,11 @@ class Simulation:
             if self._teleporting_cars > 0:
                 print("Teleporting cars:", self._teleporting_cars)
                 print(reward)
-                reward = reward * self._teleporting_cars if reward > 0 else reward * 2 * self._teleporting_cars
+                reward =  reward * self._teleporting_cars if reward > 0 else reward * 2 * self._teleporting_cars
 
                 self._teleporting_cars = 0
             
-            
+            # reward = max(min(reward, 60), -60)
 
             # choose the light phase to activate, based on the current state of the intersection
             action = self._choose_action(current_state)
@@ -149,7 +149,7 @@ class Simulation:
 
             self._step += 1 # update the step counter
             steps_todo -= 1
-            queue_length = self._get_queue_length() 
+            queue_length = self._get_queue_length()
             self._queue_length_episode.append(queue_length)
 
 
