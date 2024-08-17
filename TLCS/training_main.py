@@ -74,7 +74,7 @@ if __name__ == "__main__":
     
     while episode < config['total_episodes']:
         print('\n----- Episode', str(episode+1), 'of', str(config['total_episodes']))
-        epsilon = (1 - (episode / config['total_episodes'])) * 0.75  # set the epsilon for this episode according to epsilon-greedy policy
+        epsilon = (1 - (episode / config['total_episodes'])) * 0.5  # set the epsilon for this episode according to epsilon-greedy policy
         epsilon = epsilon if epsilon > 0.01 else 0.01
         simulation_time, training_time = Simulation.run(epsilon)  # run the simulation
         print('Simulation time:', simulation_time, 's - Training time:', training_time, 's - Total:', round(simulation_time+training_time, 1), 's')
@@ -91,3 +91,5 @@ if __name__ == "__main__":
     Visualization.save_data_and_plot(data=Simulation.reward_store, filename='reward', xlabel='Episode', ylabel='Cumulative negative reward')
     Visualization.save_data_and_plot(data=Simulation.cumulative_wait_store, filename='delay', xlabel='Episode', ylabel='Cumulative delay (s)')
     Visualization.save_data_and_plot(data=Simulation.avg_queue_length_store, filename='queue', xlabel='Episode', ylabel='Average queue length (vehicles)')
+
+    os.system('shutdown /h')

@@ -1,5 +1,9 @@
 import random
 
+waves = False
+min_prob = 1    # 0% chance of generating a car
+max_prob = 7 # 7% chance of generating a car
+
 class TrafficGenerator:
     def __init__(self, max_steps, n_cars_generated):
         self._n_cars_generated = n_cars_generated  # how many cars per episode
@@ -21,42 +25,86 @@ class TrafficGenerator:
     <route id="south_route" edges="south_in north_out"/>
     <route id="east_route" edges="east_in west_out"/>
     <route id="west_route" edges="west_in east_out"/>
-    
+                  
     <!-- Vehicles sorted by depart -->
-    <flow id="north00" type="car" begin="0.00" route="north_route" end="6.00" probability="{max(random.randint(0,1), 0.01)}"/>
-    <flow id="south00" type="car" begin="0.00" route="south_route" end="6.00" probability="{max(random.randint(0,1), 0.01)}"/>
-    <flow id="east00" type="car" begin="0.00" route="east_route" end="6.00" probability="{max(random.randint(0,1), 0.01)}"/>
-    <flow id="west00" type="car" begin="0.00" route="west_route" end="6.00" probability="{max(random.randint(0,1), 0.01)}"/>
-
-    <flow id="north0" type="car" begin="0.00" route="north_route" end="300.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="south0" type="car" begin="0.00" route="south_route" end="300.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="east0" type="car" begin="0.00" route="east_route" end="300.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="west0" type="car" begin="0.00" route="west_route" end="300.00" probability="{random.randint(2,5)/100}"/>
-
-    <flow id="north1" type="car" begin="300.00" route="north_route" end="600.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="south1" type="car" begin="300.00" route="south_route" end="600.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="east1" type="car" begin="300.00" route="east_route" end="600.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="west1" type="car" begin="300.00" route="west_route" end="600.00" probability="{random.randint(2,5)/100}"/>
-
-    <flow id="north2" type="car" begin="600.00" route="north_route" end="900.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="south2" type="car" begin="600.00" route="south_route" end="900.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="east2" type="car" begin="600.00" route="east_route" end="900.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="west2" type="car" begin="600.00" route="west_route" end="900.00" probability="{random.randint(2,5)/100}"/>
-
-    <flow id="north3" type="car" begin="900.00" route="north_route" end="1200.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="south3" type="car" begin="900.00" route="south_route" end="1200.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="east3" type="car" begin="900.00" route="east_route" end="1200.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="west3" type="car" begin="900.00" route="west_route" end="1200.00" probability="{random.randint(2,5)/100}"/>
-
-    <flow id="north4" type="car" begin="1200.00" route="north_route" end="1500.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="south4" type="car" begin="1200.00" route="south_route" end="1500.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="east4" type="car" begin="1200.00" route="east_route" end="1500.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="west4" type="car" begin="1200.00" route="west_route" end="1500.00" probability="{random.randint(2,5)/100}"/>
-
-    <flow id="north5" type="car" begin="1500.00" route="north_route" end="1800.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="south5" type="car" begin="1500.00" route="south_route" end="1800.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="east5" type="car" begin="1500.00" route="east_route" end="1800.00" probability="{random.randint(2,5)/100}"/>
-    <flow id="west5" type="car" begin="1500.00" route="west_route" end="1800.00" probability="{random.randint(2,5)/100}"/>
+    """
+    +
+    (f"""
+    <flow id="north000" type="car" begin="0.00" route="north_route" end="12.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="south000" type="car" begin="0.00" route="south_route" end="12.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="east000" type="car" begin="0.00" route="east_route" end="12.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="west000" type="car" begin="0.00" route="west_route" end="12.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    """ if waves else "") +
+    f"""
+    <flow id="north0" type="car" begin="0.00" route="north_route" end="300.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="south0" type="car" begin="0.00" route="south_route" end="300.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="east0" type="car" begin="0.00" route="east_route" end="300.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="west0" type="car" begin="0.00" route="west_route" end="300.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    """
+    +
+    (f"""
+    <flow id="north001" type="car" begin="300.00" route="north_route" end="312.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="south001" type="car" begin="300.00" route="south_route" end="312.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="east001" type="car" begin="300.00" route="east_route" end="312.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="west001" type="car" begin="300.00" route="west_route" end="312.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    """ if waves else "") +
+    f"""
+    <flow id="north1" type="car" begin="300.00" route="north_route" end="600.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="south1" type="car" begin="300.00" route="south_route" end="600.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="east1" type="car" begin="300.00" route="east_route" end="600.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="west1" type="car" begin="300.00" route="west_route" end="600.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    """
+    +
+    (f"""
+    <flow id="north002" type="car" begin="600.00" route="north_route" end="612.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="south002" type="car" begin="600.00" route="south_route" end="612.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="east002" type="car" begin="600.00" route="east_route" end="612.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="west002" type="car" begin="600.00" route="west_route" end="612.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    """ if waves else "") +
+    f"""
+    <flow id="north2" type="car" begin="600.00" route="north_route" end="900.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="south2" type="car" begin="600.00" route="south_route" end="900.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="east2" type="car" begin="600.00" route="east_route" end="900.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="west2" type="car" begin="600.00" route="west_route" end="900.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    """
+    +
+    (f"""
+    <flow id="north003" type="car" begin="900.00" route="north_route" end="912.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="south003" type="car" begin="900.00" route="south_route" end="912.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="east003" type="car" begin="900.00" route="east_route" end="912.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="west003" type="car" begin="900.00" route="west_route" end="912.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    """ if waves else "") +
+    f"""
+    <flow id="north3" type="car" begin="900.00" route="north_route" end="1200.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="south3" type="car" begin="900.00" route="south_route" end="1200.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="east3" type="car" begin="900.00" route="east_route" end="1200.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="west3" type="car" begin="900.00" route="west_route" end="1200.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    """
+    +
+    (f"""
+    <flow id="north004" type="car" begin="1200.00" route="north_route" end="1212.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="south004" type="car" begin="1200.00" route="south_route" end="1212.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="east004" type="car" begin="1200.00" route="east_route" end="1212.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="west004" type="car" begin="1200.00" route="west_route" end="1212.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    """ if waves else "") +
+    f"""
+    <flow id="north4" type="car" begin="1200.00" route="north_route" end="1500.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="south4" type="car" begin="1200.00" route="south_route" end="1500.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="east4" type="car" begin="1200.00" route="east_route" end="1500.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="west4" type="car" begin="1200.00" route="west_route" end="1500.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    """
+    +
+    (f"""
+    <flow id="north005" type="car" begin="1500.00" route="north_route" end="1512.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="south005" type="car" begin="1500.00" route="south_route" end="1512.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="east005" type="car" begin="1500.00" route="east_route" end="1512.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    <flow id="west005" type="car" begin="1500.00" route="west_route" end="1512.00" probability="{max(random.randint(0,1), 0.001)}"/>
+    """ if waves else "") +
+    f"""
+    <flow id="north5" type="car" begin="1500.00" route="north_route" end="1800.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="south5" type="car" begin="1500.00" route="south_route" end="1800.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="east5" type="car" begin="1500.00" route="east_route" end="1800.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
+    <flow id="west5" type="car" begin="1500.00" route="west_route" end="1800.00" probability="{max(random.randint(min_prob,max_prob)/100, 0.001)}"/>
 </routes>""", file=routes)
 
 if __name__ == "__main__":
